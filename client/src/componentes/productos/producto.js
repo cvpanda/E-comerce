@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 //import styles from './Producto.module.css'
 import {Button} from 'react-bootstrap'
-// import Categorias from '../Categorias/Categorias'
+ import Categorias from '../categoria/categoria.js'
 
 export function Producto({nombre , descripcion , valor,id,categorias,imagen}) {
     return ( 
@@ -18,7 +18,7 @@ export function Producto({nombre , descripcion , valor,id,categorias,imagen}) {
         </div>
             <ul>
                 
-                {/* <Categorias/> */}
+                { <Categorias/> }
                 
             </ul>
             <Button>Agregar al carrito</Button>

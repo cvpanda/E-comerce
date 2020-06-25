@@ -11,7 +11,7 @@ export function Categorias ({categoria}) {
 function mapStateToProps(state) {
    
     return {
-      Categoria: state.categorias,
+      categoria: state.categorias,
       
     };
   }

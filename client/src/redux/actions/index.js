@@ -1,14 +1,24 @@
-export function agregarProducto (payload) {
-    return { type: "SET_PRODUCTO", payload };
+export function getProducto (productos) {
+    return { type: "GET_PRODUCTO", productos };
 }
 
-export const agregarAlCarro =(payload)=> {
-    return { type: "SET_AGREGAR_CARRO" , payload};
+export const buscarProductos =(productos)=> {
+    return { type: "GET_BUSCAR_PRODUCTOS" , productos};
 }
 
-export const comprar =(payload)=> {
-    return { type: "SET_COMPRA" , payload};
+
+export const fetchProductos = categorias => dispatch =>{
+    const url =`/api/productos${categorias ? `?categoria=${categoria}`:''}`;
+    return axios
+       .get(url)
+       .then(res=>res.data)
+       .then(productos=>dispatch(getProducto(productos)))
 }
 
+export const fetchBuscarProductos = () => dispatch =>
+axios
+   .get('/api/productos')
+   .then(res => res.data)
+   .then(productos=>dispatch(buscarProductos(productos)))
 
 

@@ -1,13 +1,14 @@
 import React from 'react';
+import Catalogo from './componentes/catalogo/catalogo.js'
+import { Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Producto from './componentes/productos/producto.js'
+
 function App() {
   return (
-    <div>
-      <Producto/>
-
-     
-    </div>
+    <React.Fragment>
+    <Route path= '/' component={Catalogo} />
+    </React.Fragment>
   );
 }
 
