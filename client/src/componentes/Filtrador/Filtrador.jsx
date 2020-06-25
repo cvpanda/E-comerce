@@ -1,15 +1,22 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {From , FormCheck, Form} from 'react-bootstrap'
+import { FormCheck, Form} from 'react-bootstrap'
+import { filtrarProductos } from '../../redux/actions';
 
-export function Filtrador ({categorias}) {
+export function Filtrador ({categorias , filtrarProductos}) {
+    function handleSubmit(event) {
+        event.preventDefault();
+        filtrarProductos(event.target.value)
+    }
+    
     return(
 
-        <Form>
+        <Form onSubmit = {(e)=> this.handleSubmit(e)}>
             <h4>Categorias</h4>
             {categorias.map(categoria =>
-            <FormCheck type= "checkbox" label = {categoria}/>
+            <FormCheck type= "checkbox" label = {categoria} name = {categoria} value = {categoria}/>
                 )}
+            <input type="submit" value="Submit" />    
         </Form>
  
 
@@ -26,7 +33,7 @@ function mapStateToProps(state) {
 
   function mapDispatchToProps(dispatch) {
     return {
-       
+        filtrarProductos: categorias => dispatch(filtrarProductos(categorias)),
     };
   }
 

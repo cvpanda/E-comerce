@@ -7,20 +7,23 @@ import Filtrador from '../Filtrador/Filtrador'
 
 export function Catalogo ({productos}) {
     return (
-        <Container>
-          <Col>
-            <Filtrador/>
-          </Col>
-        <Col>
-          {productos.map((producto) => <Producto
-            nombre = {producto.nombre} 
-            descripcion = {producto.descripcion}
-            valor = {producto.valor}
-            id = {producto.id}
-            imagen = {producto.imagenes}
-            />
-          )}
-        </Col>
+        <Container className = {styles.container}>
+          <Row>
+            <Col sm={4}>
+              <Filtrador/>
+            </Col>
+            <Col sm={8} className = {styles.productos}>
+                {productos.map((producto) => <Producto 
+                  nombre = {producto.nombre} 
+                  descripcion = {producto.descripcion}
+                  valor = {producto.valor}
+                  id = {producto.id}
+                  imagen = {producto.imagenes}
+                  />
+                  )}
+              
+            </Col>
+          </Row>
         </Container>
         )
 }

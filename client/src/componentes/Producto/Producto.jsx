@@ -1,20 +1,20 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import styles from './Producto.module.css'
-import {Button} from 'react-bootstrap'
+import {Button, Image} from 'react-bootstrap'
 // import Categorias from '../Categorias/Categorias'
 
 export function Producto({nombre , descripcion , valor,id,categorias,imagen}) {
     return ( 
-    <div>
-        <div>
-            <h1>{nombre}</h1>
+    <div className = {styles.producto}>
+       
+            <h3>{nombre}</h3>
             {/* <h3>{id}</h3> */}
-        </div>
+        
+            <Image className = "foto" src={imagen} alt= "FOTO" rounded /> 
         <div>
-            <img src={imagen} alt=""/>
             <p>{descripcion}</p>
-            <h4>{valor}</h4>
+            <h4>${valor}</h4>
         </div>
             <ul>
                 

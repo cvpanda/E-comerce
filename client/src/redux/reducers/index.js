@@ -7,7 +7,7 @@ const initialState = {
         descripcion:"Tremendo fierrro papa ",
         nombre:"El tutu",
         valor:43242,
-        imagen: "https://www.extremetech.com/wp-content/uploads/2019/12/SONATA-hero-option1-764A5360-edit-640x354.jpg",
+        imagen: "https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/body-image/public/1-corvette-stingray-c8-2019-fd-hr-hero-front_0.jpg?itok=SEYe_vLy",
         },
         {
         id:1,
@@ -23,13 +23,31 @@ const initialState = {
         valor:432,
         imagen:"https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1589313237-gazelle-ultimate-grid-1589313216.jpg",
         }
-    ]
+    ],
+    detalle: {
+        id:23,
+        descripcion:"sakld wqjaklnalkfqajnfikamvcnkla´mwfdklqaw´f cnmakl awqdfwqhjikfolqwjmenaoikd vmqwjdñwq jmklq´qw ",
+        nombre:"El tutu ZOOM",
+        valor:430242,
+        imagen: "https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/body-image/public/1-corvette-stingray-c8-2019-fd-hr-hero-front_0.jpg?itok=SEYe_vLy",
+        categorias: ["outdoor", "boludeces" , "autos" , "computacion" , "decoracion" , "aventura"],
+        },
 }
 
 function rootReducer(state = initialState , action){
-    if (action.type === "PROBANDO_SI_FUNCA") {
-      
-        }
+    if (action.type === "FILTRAR_PRODUCTOS") {
+      return{
+          ...state,
+          productos: action.payload,
+      }
+    }
+    if (action.type === "BUSCAR_PRODUCTOS") {
+      return{
+          ...state,
+          productos: action.payload,
+      }
+    }
+
     
    
         
