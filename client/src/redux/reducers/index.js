@@ -48,6 +48,12 @@ function rootReducer(state = initialState , action){
           productos: action.payload,
       }
     }
+    if(action.type === "CREAR_NUEVO_PRODUCTO") {
+        return{
+            ...state,
+            productos : action.payload,        //deberia recibir todos los productos de la DB
+        }
+    }
 
     
    

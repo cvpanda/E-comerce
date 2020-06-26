@@ -32,4 +32,19 @@ export function buscarProductos (nombre) {
    
 }
 
+export function crearProducto (datos , categorias){
+    return function(dispatch){
+        axios.post('/productos/new',{
+            params: {
+                datos: datos,
+                categorias: categorias
+            }
+        })
+        .then(response => response.data)
+        .then(data => {
+            dispatch({ type: "CREAR_NUEVO_PRODUCTO" , payload: data})
+        })
+    }
+}
+
 
