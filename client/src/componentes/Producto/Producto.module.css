@@ -1,10 +1,11 @@
 .producto{
     align-content: center;
+    margin: 20px;
     width: 300px;
-    height: 300px;
+    height: auto;
 }
 
 .foto{
-    width: 250px;
+    width: 300px;
     
 }

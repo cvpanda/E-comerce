@@ -1,23 +1,40 @@
-import React from 'react'
+import React ,{useState} from 'react'
 import {connect} from 'react-redux'
 import { FormCheck, Form} from 'react-bootstrap'
 import { filtrarProductos } from '../../redux/actions';
 
 export function Filtrador ({categorias , filtrarProductos}) {
+    var [seleccion , setSeleccion] = useState('')
     function handleSubmit(event) {
         event.preventDefault();
-        filtrarProductos(event.target.value)
+        filtrarProductos(seleccion)
     }
-    
-    return(
+    // (event) => setSeleccion([...seleccion , event.target.value])
+    function agregaSeleccion(event){
+        if(!seleccion){ 
+            setSeleccion([...seleccion , event.target.value])
+        } if (seleccion.includes(event.target.value)){
+           var borrar = seleccion.indexOf(event.target.value)
+            seleccion.splice(borrar , 1)
+        } else {
+            setSeleccion([...seleccion , event.target.value])
+        }
+    }
 
-        <Form onSubmit = {(e)=> this.handleSubmit(e)}>
-            <h4>Categorias</h4>
-            {categorias.map(categoria =>
-            <FormCheck type= "checkbox" label = {categoria} name = {categoria} value = {categoria}/>
+    return(
+        <div>
+           
+            
+            <Form onSubmit = {(e)=> this.handleSubmit(e)}>
+                <h4>Categorias</h4>
+                {categorias.map(categoria =>
+                <FormCheck type= "checkbox" label = {categoria} name = {categoria}
+                value = {categoria} onChange= {(event) => agregaSeleccion(event)} />
                 )}
-            <input type="submit" value="Submit" />    
-        </Form>
+                <input type="submit" value="Submit" />  
+                
+            </Form>
+        </div>
  
 
     )

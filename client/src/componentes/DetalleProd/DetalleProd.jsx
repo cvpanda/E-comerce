@@ -3,18 +3,21 @@ import {connect} from 'react-redux'
 import styles from './DetalleProd.module.css'
 import {Button, Image , Col , Row , Container} from 'react-bootstrap'
 
-export function DetalleProd ({nombre , descripcion , valor,id,categorias,imagen}) {
+export function DetalleProd ({detalle}) {
+    const {nombre, descripcion , imagen , id ,valor , categorias} = detalle;
     return (
         <div>
+       
             <Col>
                 <h2>{nombre}</h2>
                 <img src={imagen} alt=""/>
             </Col>
             <Col>
                 <Row>
-                    {categorias.map(categoria => 
-                        <span>{categoria}</span>
-                    )}
+                    {/* {categorias.map((c) => 
+                        <span>{c}</span>
+                    )} */}
+                    
                 </Row>
                 
                 <p>{descripcion}</p>
@@ -30,7 +33,9 @@ export function DetalleProd ({nombre , descripcion , valor,id,categorias,imagen}
 function mapStateToProps(state) {
    
     return {
-      detalle: state.detalle,
+
+        detalle: state.detalle,
+    
       
     };
   }

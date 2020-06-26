@@ -18,7 +18,7 @@ export function Catalogo ({productos}) {
                   descripcion = {producto.descripcion}
                   valor = {producto.valor}
                   id = {producto.id}
-                  imagen = {producto.imagenes}
+                  imagen = {producto.imagen}
                   />
                   )}
               

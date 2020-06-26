@@ -24,13 +24,13 @@ const initialState = {
         imagen:"https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1589313237-gazelle-ultimate-grid-1589313216.jpg",
         }
     ],
-    detalle: {
+    detalle:{
         id:23,
         descripcion:"sakld wqjaklnalkfqajnfikamvcnkla´mwfdklqaw´f cnmakl awqdfwqhjikfolqwjmenaoikd vmqwjdñwq jmklq´qw ",
         nombre:"El tutu ZOOM",
+        categorias: ["outdoor", "boludeces" , "autos" , "computacion" , "decoracion" , "aventura"],
         valor:430242,
         imagen: "https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/body-image/public/1-corvette-stingray-c8-2019-fd-hr-hero-front_0.jpg?itok=SEYe_vLy",
-        categorias: ["outdoor", "boludeces" , "autos" , "computacion" , "decoracion" , "aventura"],
         },
 }
 

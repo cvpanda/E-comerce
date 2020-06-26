@@ -11,16 +11,12 @@ export function Producto({nombre , descripcion , valor,id,categorias,imagen}) {
             <h3>{nombre}</h3>
             {/* <h3>{id}</h3> */}
         
-            <Image className = "foto" src={imagen} alt= "FOTO" rounded /> 
+            <Image className = {styles.foto} src={imagen} alt= "FOTO" rounded /> 
         <div>
             <p>{descripcion}</p>
             <h4>${valor}</h4>
         </div>
-            <ul>
-                
-                {/* <Categorias/> */}
-                
-            </ul>
+          
             <Button>Agregar al carrito</Button>
     </div>
     
@@ -31,7 +27,7 @@ export function Producto({nombre , descripcion , valor,id,categorias,imagen}) {
 function mapStateToProps(state) {
    
     return {
-      empresas: state.Producto,
+      producto: state.Producto,
       
     };
   }

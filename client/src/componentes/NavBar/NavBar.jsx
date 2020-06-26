@@ -1,13 +1,15 @@
-import React from 'react'
+import React , {useState}from 'react'
 import {connect} from 'react-redux'
 import {Container , Row , Col , Navbar , Nav , Form , FormControl , Button} from 'react-bootstrap'
 import { buscarProductos } from '../../redux/actions';
+
 export function NavBar (){
     function handleSubmit(event){
         event.preventDefault();
         buscarProductos(event.target.value)
     }
-
+    
+  const [producto, setProducto] = useState('')
 
     return(
         <Navbar bg="dark" variant="dark">
@@ -17,7 +19,7 @@ export function NavBar (){
                 <Nav.Link href="#features">Contacto</Nav.Link>
             </Nav>
             <Form inline onSubmit = {(e)=> handleSubmit(e)}>
-                <FormControl type="text" placeholder="Buscar" className="mr-sm-2" />
+                <FormControl type="text"placeholder="Buscar" name='producto' value = {producto} onChange={(e)=> setProducto(e.target.value)} className="mr-sm-2" />
                 <Button variant="light" type="submit">Buscar</Button>
             </Form>
         </Navbar>
