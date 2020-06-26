@@ -24,7 +24,7 @@ export function Filtrador ({categorias , filtrarProductos}) {
     return(
         <div>
            
-            
+           {console.log(seleccion)}
             <Form onSubmit = {(e)=> this.handleSubmit(e)}>
                 <h4>Categorias</h4>
                 {categorias.map(categoria =>

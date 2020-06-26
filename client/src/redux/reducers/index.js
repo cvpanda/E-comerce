@@ -1,6 +1,7 @@
 
 const initialState = {
     categorias: ["outdoor", "boludeces" , "autos" , "computacion" , "decoracion" , "aventura"],
+    seleccionadas:[],
     productos:[
         {
         id:0,

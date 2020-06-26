@@ -7,6 +7,7 @@ import Filtrador from '../Filtrador/Filtrador'
 
 export function Catalogo ({productos}) {
     return (
+      
         <Container className = {styles.container}>
           <Row>
             <Col sm={4}>

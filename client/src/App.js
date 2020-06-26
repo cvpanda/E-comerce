@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './componentes/NavBar/NavBar'
 import './App.css';
 import  DetalleProd  from './componentes/DetalleProd/DetalleProd';
+import ProductManager from './componentes/ProductManager/ProductManager';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
     <Route path= '/' component={NavBar} />
     <Route exact path= '/' component={Catalogo} />
     <Route exact path= '/producto/:idproducto' component={DetalleProd} />
+    <Route exact path= '/CURD' component = {ProductManager} />
     </React.Fragment>
   );
 }

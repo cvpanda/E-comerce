@@ -6,26 +6,26 @@ import {Button, Image , Col , Row , Container} from 'react-bootstrap'
 export function DetalleProd ({detalle}) {
     const {nombre, descripcion , imagen , id ,valor , categorias} = detalle;
     return (
-        <div>
-       
-            <Col>
-                <h2>{nombre}</h2>
-                <img src={imagen} alt=""/>
-            </Col>
-            <Col>
-                <Row>
-                    {/* {categorias.map((c) => 
-                        <span>{c}</span>
-                    )} */}
-                    
-                </Row>
-                
-                <p>{descripcion}</p>
-                <span>{id}</span>
-                <h5>{valor}</h5>
-                <Button>Agergar al Carrito</Button>
-            </Col>
+        <div className = {styles.contenedor}>
+            <Row>
 
+                <Col sm={8}>
+                
+                    <h2>{nombre}</h2>
+                    <img src={imagen} alt="" className = {styles.img}/>
+                </Col>
+                <Col sm={4} className = {styles.detalles}>
+                   <div>
+
+                    <h4 className={styles.titulos}>Detalles:</h4>
+                    <p className={styles.titulos}>{descripcion}</p>
+                    <span className={styles.titulos}>codigo producto:{id}</span>
+                    <h5 className={styles.titulos}>${valor}</h5>
+                    <Button className={styles.titulos}>Agergar al Carrito</Button>
+                   </div>
+                </Col>
+
+            </Row>
         </div>
     )
 }
