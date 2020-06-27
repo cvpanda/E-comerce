@@ -11,7 +11,7 @@ export function Categorias ({categoria}) {
 function mapStateToProps(state) {
    
     return {
-      categoria: state.categorias,
+      categoria: state.productos.categoria,
       
     };
   }
@@ -24,4 +24,4 @@ function mapStateToProps(state) {
 
 
 export default connect(
-)(Categorias) 
+)(Categorias)

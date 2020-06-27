@@ -1,7 +1,7 @@
 const Product = (sequelize, S) => {
   // defino el modelo
-  const P = sequelize.define("products", {
-    /*  idproducto: {
+  const Product = sequelize.define("products", {
+    /* idproducto: {
       type: S.INTEGER,
       allowNull: false,
       autoIncrement: true,
@@ -24,6 +24,7 @@ const Product = (sequelize, S) => {
       allowNull: false,
     },
   });
-  return P;
+  return Product;
 };
+
 module.exports = Product;

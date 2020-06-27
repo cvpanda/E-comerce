@@ -1,10 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-//import styles from './Producto.module.css'
+import styles from './Producto.module.css'
 import {Button} from 'react-bootstrap'
- import Categorias from '../categoria/categoria.js'
+// import Categorias from '../Categorias/Categorias'
 
-export function Producto({nombre , descripcion , valor,id,categorias,imagen}) {
+export function Producto({nombre , descripcion , valor,imagen}) {
+    
     return ( 
     <div>
         <div>
@@ -12,13 +13,14 @@ export function Producto({nombre , descripcion , valor,id,categorias,imagen}) {
             {/* <h3>{id}</h3> */}
         </div>
         <div>
-            <img src={imagen} alt=""/>
+        {console.log(imagen,nombre)}
+    <img src={imagen} width={300} height={300}/>
             <p>{descripcion}</p>
             <h4>{valor}</h4>
         </div>
             <ul>
                 
-                { <Categorias/> }
+                {/* <Categorias/> */}
                 
             </ul>
             <Button>Agregar al carrito</Button>
@@ -31,7 +33,7 @@ export function Producto({nombre , descripcion , valor,id,categorias,imagen}) {
 function mapStateToProps(state) {
    
     return {
-      productos: state.productos,
+      producto: state.Producto,
       
     };
   }

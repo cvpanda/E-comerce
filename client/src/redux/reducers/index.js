@@ -1,4 +1,4 @@
-//import {Products} from '../objects/product.js'
+
 const initialState = {
     categorias: ["outdoor", "boludeces" , "autos" , "computacion" , "decoracion" , "aventura"],
     productos:[
@@ -7,7 +7,7 @@ const initialState = {
         descripcion:"Tremendo fierrro papa ",
         nombre:"El tutu",
         valor:43242,
-        imagen: "https://www.extremetech.com/wp-content/uploads/2019/12/SONATA-hero-option1-764A5360-edit-640x354.jpg",
+        imagen:"http://www.extremetech.com/wp-content/uploads/2019/12/SONATA-hero-option1-764A5360-edit-640x354.jpg"
         },
         {
         id:1,
@@ -26,16 +26,14 @@ const initialState = {
     ]
 }
 
-
-
-
-
-
-
-
-
 function rootReducer(state = initialState , action){
+    if (action.type === "PROBANDO_SI_FUNCA") {
+      
+        }
     
+   
+        
+    
+    return state
 }
-
 export default rootReducer;
