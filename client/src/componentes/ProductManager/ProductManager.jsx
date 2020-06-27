@@ -25,7 +25,9 @@ export function ProductManager (props){
 
     function handleSubmit(event) {
         event.preventDefault();
-        crearProducto(event.value , seleccion)
+        var producto = {nombre , valor , descripcion , seleccion}
+        crearProducto(producto)
+        console.log(producto)
     }
 
   
@@ -60,11 +62,11 @@ export function ProductManager (props){
                 <Form.Row>
                 
                 <Col >
-                        <div class="border" className = {styles.props}>
+                        <div className = {styles.props}>
                             <Form.Label>Seleccionadas</Form.Label>
                             <Form.Group>
                             {seleccion && seleccion.map(e => 
-                            <Cat categorias = {e}/>)}
+                            <Cat key={e} categorias = {e}/>)}
                             </Form.Group>
                         </div>
                         <Button  variant="secondary"  className="my-1" size="sm">Crear Propiedad</Button>
@@ -73,7 +75,7 @@ export function ProductManager (props){
                     <Form.Group as={Col} controlId="formGridState">
                         <Form.Label>Categorias</Form.Label>
                         <Form.Group  >
-                        {props.categorias.map(e =>  <Form.Check inline type="checkbox" label = {e} name = {e} value = {e}
+                        {props.categorias.map(e =>  <Form.Check inline key= {e} type="checkbox" label = {e} name = {e} value = {e}
                         onChange= {(event) => agregaSeleccion(event)} />
                         )}
                         </Form.Group >
@@ -115,7 +117,7 @@ function mapStateToProps(state) {
 
   function mapDispatchToProps(dispatch) {
     return {
-        crearProducto: (datos, categorias) => dispatch(crearProducto(datos , categorias)),
+        crearProducto: (datos) => dispatch(crearProducto(datos)),
      };
   }     
 

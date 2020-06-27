@@ -32,12 +32,11 @@ export function buscarProductos (nombre) {
    
 }
 
-export function crearProducto (datos , categorias){
+export function crearProducto (datos){
     return function(dispatch){
         axios.post('/productos/new',{
             params: {
                 datos: datos,
-                categorias: categorias
             }
         })
         .then(response => response.data)
