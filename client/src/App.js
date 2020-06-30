@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
+import Catalogo from './componentes/Catalogo/Catalogo'
+import { Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from './componentes/NavBar/NavBar'
 import './App.css';
+import  DetalleProd  from './componentes/DetalleProd/DetalleProd';
+import ProductManager from './componentes/ProductManager/ProductManager';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+    <Route path= '/' component={NavBar} />
+    <Route exact path= '/productos' component={Catalogo} />
+    <Route exact path= '/producto/:idproducto' component={DetalleProd} />
+    <Route exact path= '/productos/agregar' component = {ProductManager} />
+    </React.Fragment>
   );
 }
 
 export default App;
+
