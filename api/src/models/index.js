@@ -18,8 +18,11 @@ fs.readdirSync(__dirname)
     models[name] = model;
   });
 
-const { Product } = models;
+const { Product, ProductCat, Category } = models;
 
 // Add model relationships here
+
+Product.belongsToMany(ProductCat, { through: "id" });
+ProductCat.belongsToMany(Category, { through: "idproductcat" });
 
 module.exports = models;

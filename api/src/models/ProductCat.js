@@ -1,3 +1,5 @@
+
+
 const ProductCat = (sequelize, S) => {
   // defino el modelo  producto - categoria
 

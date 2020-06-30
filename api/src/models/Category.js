@@ -1,13 +1,15 @@
-const Category = (sequelize, S) => {
+
+
+const Category = (sequelize,S) => {
   // defino el modelo categoria
 
-  const Cat = sequelize.define("category", {
-    /*   idcat: {
+  const Cat = sequelize.define("categories", {
+    /*  id: {
       type: S.INTEGER,
       allowNull: false,
       autoIncrement: true,
     }, */
-    nombre: {
+    nombrecategoria: {
       type: S.STRING,
       allowNull: false,
     },

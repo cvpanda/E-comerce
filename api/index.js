@@ -23,7 +23,7 @@ const { conn } = require('./src/models/index.js');
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {
-  server.listen(3000, () => {
+  server.listen(3001, () => {
     console.log('%s listening at 3000'); // eslint-disable-line no-console
   });
 });

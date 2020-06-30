@@ -1,28 +1,22 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import styles from './Producto.module.css'
-import {Button} from 'react-bootstrap'
+import {Button, Image} from 'react-bootstrap'
 // import Categorias from '../Categorias/Categorias'
 
-export function Producto({nombre , descripcion , valor,imagen}) {
-    
+export function Producto({nombre , descripcion , valor,id,categorias,imagen}) {
     return ( 
-    <div>
-        <div>
-            <h1>{nombre}</h1>
+    <div className = {styles.producto}>
+       
+            <h3>{nombre}</h3>
             {/* <h3>{id}</h3> */}
-        </div>
+        
+            <Image className = {styles.foto} src={imagen} alt= "FOTO" rounded /> 
         <div>
-        {console.log(imagen,nombre)}
-    <img src={imagen} width={300} height={300}/>
             <p>{descripcion}</p>
-            <h4>{valor}</h4>
+            <h4>${valor}</h4>
         </div>
-            <ul>
-                
-                {/* <Categorias/> */}
-                
-            </ul>
+          
             <Button>Agregar al carrito</Button>
     </div>
     

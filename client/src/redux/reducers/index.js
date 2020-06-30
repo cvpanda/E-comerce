@@ -1,38 +1,71 @@
 
 const initialState = {
-    categorias: ["outdoor", "boludeces" , "autos" , "computacion" , "decoracion" , "aventura"],
-    productos:[
-        {
-        id:0,
-        descripcion:"Tremendo fierrro papa ",
-        nombre:"El tutu",
-        valor:43242,
-        imagen:"http://www.extremetech.com/wp-content/uploads/2019/12/SONATA-hero-option1-764A5360-edit-640x354.jpg"
-        },
-        {
-        id:1,
-        descripcion:"un submarino tremendo",
-        nombre:"El pepino de mar",
-        valor:5624532,
-        imagen:"https://www.armytimes.com/resizer/CShL8vQ3SHRpYArZCOKZz1nUyIQ=/1200x0/filters:quality(100)/arc-anglerfish-arc2-prod-mco.s3.amazonaws.com/public/RJYA5MJKBRAMXOTBACL6QRRC7E.jpg",
-        },
-        {
-        id:2,
-        descripcion:"Con esta te vas a los andes",
-        nombre:"Bike",
-        valor:432,
-        imagen:"https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1589313237-gazelle-ultimate-grid-1589313216.jpg",
-        }
-    ]
+    categorias:[{}],
+    seleccionadas:[],
+    productos:[ ],
+    detalle:{ },
 }
 
 function rootReducer(state = initialState , action){
-    if (action.type === "PROBANDO_SI_FUNCA") {
-      
-        }
     
-   
-        
+
+    if (action.type === "TRAER_TODOS") {
+        return{
+            ...state,
+            productos: action.payload,
+        }
+      }
+
+    if (action.type === "FILTRAR_PRODUCTOS") {
+      return{
+          ...state,
+          productos: action.payload,
+      }
+    }
+    if (action.type === "BUSCAR_PRODUCTOS") {
+      return{
+          ...state,
+          productos: action.payload,
+      }
+    }
+    if(action.type === "CREAR_NUEVO_PRODUCTO") {
+        return{
+            ...state,
+            productos : action.datos,     //deberia recibir todos los productos de la DB
+               
+ }
+      
+    }
+    if(action.type === "CREAR_NUEVA_CATEGORIA") {
+        return{
+            ...state,
+            categorias : state.categorias.concat(action.payload),        //deberia recibir todos los productos de la DB
+            
+        }
+    }
+    if(action.type === "PORD_MOD") {
+        return{
+            ...state,
+            detalle : action.payload,        
+            
+        }
+    }
+
+    if(action.type === "AGREGAR_CATEGORIA") {
+        return{
+            ...state,
+            categorias : action.payload,        
+            
+        }
+    } 
+    
+    if(action.type === "TRAER_CATEGORIAS") {
+        return{
+            ...state,
+            categorias : action.payload,        
+            
+        }
+    } 
     
     return state
 }

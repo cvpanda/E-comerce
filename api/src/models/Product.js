@@ -15,13 +15,18 @@ const Product = (sequelize, S) => {
       allowNull: false,
     },
     valor: {
-      type: S.DECIMAL(8, 2),
-      allowNull: false,
+      type: S.INTEGER,
+      allowNull:false,
+      validate: {
+        min: 0,
+      },
     },
-    //validar que no sea menor que 0 en el formulario
     stock: {
       type: S.INTEGER,
       allowNull: false,
+      validate: {
+        min: 0,
+      },
     },
   });
   return Product;

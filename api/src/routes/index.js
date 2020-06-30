@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const router = Router();
-const agregarProd = require("./product.js");
+const Prod = require("./product.js");
+const Cat = require("./category.js");
 
 // import all routers;
 const authRouter = require("./auth.js");
@@ -8,7 +9,9 @@ const authRouter = require("./auth.js");
 // load each router on a route
 // i.e: router.use('/auth', authRouter);
 router.use("/auth", authRouter);
-console.log('hola soy test')
-router.use("/products", agregarProd);
+
+router.use("/productos", Prod);
+
+router.use("/categoria", Cat);
 
 module.exports = router;
