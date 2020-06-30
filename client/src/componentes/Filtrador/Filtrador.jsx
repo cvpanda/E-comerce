@@ -28,8 +28,8 @@ export function Filtrador ({categorias , filtrarProductos}) {
             <Form onSubmit = {(e)=> this.handleSubmit(e)}>
                 <h4>Categorias</h4>
                 {categorias.map(categoria =>
-                <FormCheck type= "checkbox" label = {categoria} name = {categoria}
-                value = {categoria} onChange= {(event) => agregaSeleccion(event)} />
+                <FormCheck type= "checkbox" label = {categoria.nombrecategoria} name = {categoria.nombrecategoria}
+                value = {categoria.nombrecategoria} onChange= {(event) => agregaSeleccion(event)} />
                 )}
                 <input type="submit" value="Submit" />  
                 

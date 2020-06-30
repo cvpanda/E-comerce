@@ -46,7 +46,7 @@
             setValor(props.productos.valor)
             setDescripcion(props.productos.descripcion)
             props.buscarProductos(nombre)
-            1
+            
         }
     //   useLayoutEffect(() => {
     //    return traerCategorias()
