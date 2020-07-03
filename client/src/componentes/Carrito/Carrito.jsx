@@ -7,7 +7,7 @@ import styles from './Carrito.module.css'
 import ProdCarrito from '../ProdCarrito/ProdCarrito'
 
 export function Carrito() {
-    const productos = useSelector(store => store.carrito.productos);
+    const productos = useSelector(store => store.carrito);
     const subtotales = useSelector(store => store.subtotales);
     
     function sumatotal(){

@@ -6,8 +6,7 @@ const initialState = {
     detalle:{ },
     buscado:"",
     prodid:{},
-    carrito:{
-    productos:[
+    carrito:[
         {
         id:1,
         nombreproducto:"Nuevo producto",
@@ -33,7 +32,7 @@ const initialState = {
         cantidad: 2
         }
     ],  
-},
+
 subtotales:[],
 }
 
@@ -115,8 +114,9 @@ function rootReducer(state = initialState , action){
     if(action.type === "ELIMINAR_DEL_CARRITO"){
         
         return{
-            ...state,
-            carrito: state.carrito.productos.filter(producto => producto.id !== action.payload)
+            ...state, 
+                carrito: state.carrito.filter(producto => producto.id !== action.payload)
+        
         }
     }
     if(action.type === "SUBTOTAL_CARRITO"){

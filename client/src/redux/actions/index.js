@@ -152,9 +152,9 @@ export function buscarProductoId (id) {
      }
 }
 
-export function eliminarDelCarrito (id) {
+export function eliminarDelCarrito (payload) {
     
-    return{ type: "ELIMINAR_DEL_CARRITO" , id}
+    return{ type: "ELIMINAR_DEL_CARRITO" , payload}
 }
 
 export function sendSubtotal(total , ide){
