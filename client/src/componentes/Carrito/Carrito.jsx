@@ -11,16 +11,12 @@ export function Carrito() {
     const subtotales = useSelector(store => store.subtotales);
     
     function sumatotal(){
-        if(subtotales.length == 0){
-            return 0
-        } else {
-            subtotales.forEach(element => {
-                var sum = 0
-               sum = sum + element.total
-               return sum
-            });
-        }
-        
+       var validos = subtotales.filter(element => element.id)
+       var suma = 0
+        console.log("los validos =>"+ validos)
+        validos.forEach(element => {
+            suma +=element.total
+        }); return suma
     }
     return(
         <Container className={styles.container}>
