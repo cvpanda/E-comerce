@@ -25,11 +25,23 @@ export function filtrarProductos (categorias) {
 
 
 export function buscarProductos (nombre) {
+    console.log(nombre)
     return function(dispatch){
         axios.get('http://localhost:3001/productos/buscar/'+nombre)
          .then( response => response.data)
          .then(nombre => {
         dispatch({ type: "BUSCAR_PRODUCTOS", payload: nombre})
+        }).catch(console.log(console.error("error")))
+     }
+}
+
+export function buscarProductoEditar (nombre) {
+    console.log("llego al action con"+nombre)
+    return function(dispatch){
+        axios.get('http://localhost:3001/productos/buscar/'+nombre)
+         .then( response => response.data)
+         .then(nombre => {
+        dispatch({ type: "BUSCAR_PRODUCTOS_EDITAR", payload: nombre})
         }).catch(console.log(console.error("error")))
      }
 }
@@ -68,21 +80,7 @@ export function crearCategoria (payload){
     // }
 }
 
-export function prodMod (payload){
-    // console.log("llego al action")
-    // return { type: "PORD_MOD" , payload};
-    // return function(dispatch){
-    //     axios.get('/categoria/new',{
-    //         params: {
-    //             datos: nombre,
-    //         }
-    //     })
-    //     .then(response => response.nombre)
-    //     .then(data => {
-    //         dispatch({ type: "PORD_MOD" , payload: data})
-    //     })
-    // }
-}
+
 
 export function agregarCategoriaProducto (producto,categoria){
     return function(dispatch){
@@ -95,6 +93,7 @@ export function agregarCategoriaProducto (producto,categoria){
 }
 
 export function agregarCategoria(nombrecategoria){
+    console.log("action manda =>"+nombrecategoria)
     return function(dispatch){
         axios.post('http://localhost:3001/categoria/agregar',{
             nombrecategoria:nombrecategoria
@@ -116,4 +115,53 @@ export function traerCategorias() {
         .catch(()=>(console.log("error")))
     }
    
+}
+export function eliminarProducto(id) {
+    console.log("esta mandando este id"+id)
+    return function(dispatch){
+        axios.delete('http://localhost:3001/productos/'+id)
+         .then(
+        dispatch({ type: "ELIMINAR_PRODUCTO"})
+        ).catch(console.log(console.error("error")))
+     }
+}
+
+export function editarProducto(datos){
+    return function(dispatch){
+        console.log("action de editar producto")
+        axios.put('http://localhost:3001/productos/editar',{
+                nombreproducto: datos.nombreproducto,
+                descripcion:datos.descripcion,
+                valor:datos.valor,
+                stock:datos.stock,
+                id:datos.id
+        })
+        .then( dispatch({ type: "EDITAR_PRODUCTO"})
+        ).catch(()=>(console.log("error")))
+    }  
+}
+
+export function buscarProductoId (id) {
+    console.log("llego al action con"+id)
+    return function(dispatch){
+        axios.get('http://localhost:3001/productos/'+id)
+         .then( response => response.data)
+         .then(data => {
+        dispatch({ type: "BUSCAR_PRODUCTOS_ID", payload: data})
+        }).catch(console.log(console.error("error")))
+     }
+}
+
+export function eliminarDelCarrito (id) {
+    
+    return{ type: "ELIMINAR_DEL_CARRITO" , id}
+}
+
+export function sendSubtotal(total , ide){
+    return{ 
+        type: "SUBTOTAL_CARRITO" , 
+        payload: {
+            total:total,
+            ide:ide
+        }}
 }

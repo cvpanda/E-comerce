@@ -1,5 +1,5 @@
 const server = require("express").Router();
-const { Product, ProductCat } = require("../models/index.js");
+const { Product, Category } = require("../models/index.js");
 const { Op } = require("sequelize");
 
 //Test
@@ -35,6 +35,7 @@ function agregarProd(producto) {
 //Editar Producto
 
 server.put("/editar", function (req, res) {
+  console.log("llego el request")
   editProd(req.body).then((result) => {
     res.send(result);
   });
@@ -104,17 +105,12 @@ server.get("/:id", function (req, res) {
 });
 
 function productId(idproducto) {
-  const producto = Product.findOne({
+  const producto = Product.findAll({
     where: {
       id: idproducto.id,
     },
   });
-  const catProd = ProductCat.findAll({
-    where: {
-      idproducto: idproducto.id,
-    },
-  });
-  return Promise.all([producto, catProd]);
+  return producto;
 }
 
 //---------------------

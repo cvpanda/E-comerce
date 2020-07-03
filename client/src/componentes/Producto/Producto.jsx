@@ -2,19 +2,18 @@ import React from 'react'
 import {connect} from 'react-redux'
 import styles from './Producto.module.css'
 import {Button, Image} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 // import Categorias from '../Categorias/Categorias'
 
 export function Producto({nombre , descripcion , valor,id,categorias,imagen}) {
     return ( 
     <div className = {styles.producto}>
-       
+            <Link to= {'/productos/'+ id}>
             <h3>{nombre}</h3>
-            {/* <h3>{id}</h3> */}
-        
+            </Link>
             <Image className = {styles.foto} src={imagen} alt= "FOTO" rounded /> 
-        <div>
-            <p>{descripcion}</p>
-            <h4>${valor}</h4>
+        <div>  
+            <h5>${valor}</h5>
         </div>
           
             <Button>Agregar al carrito</Button>
