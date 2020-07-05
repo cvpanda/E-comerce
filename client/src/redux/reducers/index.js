@@ -6,34 +6,48 @@ const initialState = {
     detalle:{ },
     buscado:"",
     prodid:{},
-    carrito:[
+    carrito:[],  
+    subtotales:[],
+    orders:[
         {
-        id:1,
-        nombreproducto:"Nuevo producto",
-        descripcion:"primero",
-        valor:22222,
-        stock:3,
-        cantidad: 1
+            idcompra: 24,
+            productos: [
+               { id:1,
+                nombreproducto:"Nuevo producto",
+                descripcion:"primero",
+                valor:324432,
+                stock:23,
+                cantidad: 2
+            },
+               { id:2,
+                nombreproducto:"Locomotora",
+                descripcion:"segundo",
+                valor:231321,
+                stock:23,
+                cantidad: 4
+            }
+            ]
         },
         {
-        id:2,
-        nombreproducto:"gweqgwegewo",
-        descripcion:"segundo",
-        valor:111,
-        stock:6,
-        cantidad: 1
-        },
-        {
-        id:3,
-        nombreproducto:"sdsadasdas",
-        descripcion:"tercero",
-        valor:342432,
-        stock:10,
-        cantidad: 2
+            idcompra: 54,
+            productos: [
+               { id:1,
+                nombreproducto:"orden 2 producto",
+                descripcion:"primero",
+                valor:324432,
+                stock:23,
+                cantidad: 2
+            },
+               { id:324,
+                nombreproducto:"Loco orden 2",
+                descripcion:"segundo",
+                valor:231321,
+                stock:23,
+                cantidad: 4
+            }
+            ]
         }
-    ],  
-
-subtotales:[],
+    ],
 }
 
 function rootReducer(state = initialState , action){
@@ -119,6 +133,14 @@ function rootReducer(state = initialState , action){
         
         }
     }
+    if(action.type ===  "AGREGAR_AL_CARRITO"){
+        
+        return{
+            ...state, 
+                carrito: state.carrito.concat(action.producto)
+        
+        }
+    }
     if(action.type === "SUBTOTAL_CARRITO"){
         const {ide , total} = action.payload
         if(state.subtotales.find(element => element.id == ide)){ 
@@ -147,6 +169,23 @@ function rootReducer(state = initialState , action){
             }
         }
         
+    }
+    if(action.type === "CONFIRMAR_COMPRA"){
+        
+        return{
+            ...state, 
+                carrito: [],
+                subtotales: [],
+        
+        }
+    }
+    if(action.type ===  "CREAR_USUARIO"){
+        
+        return{
+            ...state, 
+                
+        
+        }
     }
 
     

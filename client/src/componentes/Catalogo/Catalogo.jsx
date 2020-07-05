@@ -31,7 +31,7 @@ this.props.traerCategorias()
             <Col sm={8} className = {styles.productos}>
                 {this.props.productos.map((producto) => <Producto 
                   key = {producto.id}
-                  nombre = {producto.nombreproducto} 
+                  nombreproducto = {producto.nombreproducto} 
                   descripcion = {producto.descripcion}
                   valor = {producto.valor}
                   id = {producto.id}

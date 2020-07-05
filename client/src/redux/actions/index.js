@@ -165,3 +165,42 @@ export function sendSubtotal(total , ide){
             ide:ide
         }}
 }
+
+export function confirmarCompra(datos){
+    // return function(dispatch){
+    //     axios.post('http://localhost:3001/carrito/agregar',{
+    //         producto: datos.validos,
+    //         total: datos.suma
+    //     })
+    //     .then(response => response.data)
+    //     .then(data => {
+    //         dispatch({ type: "CONFIRMAR_COMPRA" , payload: data})
+    //     })
+    // }
+    return{ type: "CONFIRMAR_COMPRA" }
+}
+
+export function agregarAlCarrito(producto){
+    //  return function(dispatch){
+    //     axios.post('http://localhost:3001/carrito/agregar/producto',{
+    //        producto
+    //     })
+    //     .then(response => response.data)
+    //     .then(data => {
+    //         dispatch({ type: "AGREGAR_AL_CARRITO" , payload: data})
+    //     })
+    // }
+    return{ type: "AGREGAR_AL_CARRITO", producto }
+}
+
+export function registrarUsuario(usuario){
+    return function(dispatch){
+        axios.post('http://localhost:3001/usuario/crear',{
+           usuario
+        })
+        .then(response => response.data)
+        .then(data => {
+            dispatch({ type: "CREAR_USUARIO" , payload: data})
+        })
+    }
+}

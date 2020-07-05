@@ -5,6 +5,7 @@ import { filtrarProductos } from '../../redux/actions';
 
 export function Filtrador ({categorias , filtrarProductos}) {
     var [seleccion , setSeleccion] = useState('')
+   
 
     function handleSubmit(event) {
         event.preventDefault();

@@ -8,6 +8,9 @@ import  DetalleProd  from './componentes/DetalleProd/DetalleProd';
 import ProductManager from './componentes/ProductManager/ProductManager';
 import  ProductEditor  from './componentes/ProductEditor/ProductEditor';
 import Carrito from './componentes/Carrito/Carrito';
+import { RegistroUsuario } from './componentes/RegistroUsuario/RegistroUsuario';
+import { Order } from './componentes/Order/Order';
+import { Ordenes } from './componentes/Order/Ordenes';
 
 function App() {
   return (
@@ -18,6 +21,8 @@ function App() {
     <Route exact path= '/productos/agregar' component = {ProductManager} />
     <Route exact path= '/productos/editor' component = {ProductEditor} />
     <Route exact path= '/productos/carrito' component = {Carrito} />
+    <Route exact path= '/usuario/registro'  component = {RegistroUsuario}/>
+    <Route exact path= '/order'  component = {Ordenes}/>
     </React.Fragment>
   );
 }

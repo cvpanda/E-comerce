@@ -12,23 +12,23 @@ server.get("/test", function (req, res) {
 //Agregar Productos
 
 server.post("/agregar", function (req, res) {
-  console.log(req.body)
-   const {nombreproducto,descripcion,valor,stock}=req.body
-
-  console.log(nombreproducto,descripcion,valor,stock)
-  agregarProd(req.body).then((result) => {
-    const a = Product.findAll()
-    res.send(a);
-  });
-});
-function agregarProd(producto) {
-  return Product.create({
-    nombreproducto: producto.nombreproducto,
-    descripcion: producto.descripcion,
-    valor: producto.valor,
-    stock: producto.stock,
-  });
-}
+  let b
+  b=req.body.id
+  agregarProd(req.body).then((a)=>{
+  for(let i=0;i<b.length;i++){
+    a.addCategory(i)
+  }})
+ })
+   //.then((result) => {res.json(console.log(result))});
+  function agregarProd(producto) {
+   return Product.create({
+     nombreproducto: producto.nombreproducto,
+     descripcion:producto.descripcion,
+     valor: producto.valor,
+     stock: producto.stock,
+     include:Category
+   })
+ }
 
 //---------------------
 
@@ -170,6 +170,25 @@ function addProdCategoria(catprod) {
     idproducto: catprod.idproducto,
     idcategoria: catprod.idnueva,
   });
+}
+
+server.post("/agregar", function (req, res) {
+ let b
+ b=req.body.id
+ agregarProd(req.body).then((a)=>{
+ for(let i=0;i<b.length;i++){
+   a.addCategory(i)
+ }})
+})
+  //.then((result) => {res.json(console.log(result))});
+ function agregarProd(producto) {
+  return Product.create({
+    nombreproducto: producto.nombreproducto,
+    descripcion:producto.descripcion,
+    valor: producto.valor,
+    stock: producto.stock,
+    include:Category
+  })
 }
 
 module.exports = server;
