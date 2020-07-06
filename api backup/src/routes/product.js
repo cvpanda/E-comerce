@@ -1,52 +1,41 @@
 const server = require("express").Router();
-const { Product, ProductCat,Category } = require("../models/index.js");
+const { Product, Category } = require("../models/index.js");
 const { Op } = require("sequelize");
 
+//Test
+server.get("/test", function (req, res) {
+  res.sendStatus(200);
+});
 
-
-
+//Admin
 
 //Agregar Productos
 
 server.post("/agregar", function (req, res) {
- let b
- b=req.body.idcat
- console.log(b)
- agregarProd(req.body).then((a)=>{
-   console.log(a)
-   if(b.length===0){
-     return res.json(a)
-   }
-   if(b.length===1){
-     return a.addCategory(b)
-   }
-   if(b.length>1){
-    for(let i=0;b.length!==i;i++){
-       a.addCategory(b[i])
-    }
+  let b
+  b=req.body.idcat
+  agregarProd(req.body).then((a)=>{
+  for(let i=0;i<b.length;i++){
+    a.addCategory(i)
+  }})
+ })
+   //.then((result) => {res.json(console.log(result))});
+  function agregarProd(producto) {
+   return Product.create({
+     nombreproducto: producto.nombreproducto,
+     descripcion:producto.descripcion,
+     valor: producto.valor,
+     stock: producto.stock,
+     include:Category
+   })
  }
-})
-})
-       
-
-  
-  //.then((result) => {res.json(console.log(result))});
- 
- function agregarProd(producto) {
-  return Product.create({
-    nombreproducto: producto.nombreproducto,
-    descripcion:producto.descripcion,
-    valor: producto.valor,
-    stock: producto.stock,
-  })
-}
-
 
 //---------------------
 
 //Editar Producto
 
 server.put("/editar", function (req, res) {
+  console.log("llego el request")
   editProd(req.body).then((result) => {
     res.send(result);
   });
@@ -94,25 +83,19 @@ function delProduct(catprod) {
 //Muestra los articulos a todos los usuarios
 
 server.get("/todos", function (req, res,) {
- 
   Product.findAll({
-    attributes:["id","nombreproducto","descripcion","stock","valor"],
+    attributes:["nombreproducto","id","descripcion","stock","valor"],
     include:{ 
       model:Category,
-      attributes:["nombrecategoria"],
+      attributes:["id","nombrecategoria"]
     }
-  })
-  
-  .then((result) => {
+  }).then((result) => {
     res.json(result);
   });
 });
 
 //---------------------
-server.get("/filter/:id", function (req, res) {
- Product.findByPk().then(result=>res.json(result))
- 
-});
+
 //Muestra un producto por id
 
 server.get("/:id", function (req, res) {
@@ -123,17 +106,12 @@ server.get("/:id", function (req, res) {
 });
 
 function productId(idproducto) {
-  const producto = Product.findOne({
+  const producto = Product.findAll({
     where: {
       id: idproducto.id,
     },
   });
-  const catProd = ProductCat.findAll({
-    where: {
-      idproducto: idproducto.id,
-    },
-  });
-  return Promise.all([producto, catProd]);
+  return producto;
 }
 
 //---------------------
@@ -161,7 +139,7 @@ function searchProduct(key) {
 
 //Quitar categoria a un producto
 
-server.delete("/delete", function (req, res) {
+server.delete("/:idproducto/:idcategoria", function (req, res) {
   delProdCategoria(req.params).then(() => {
     res.sendStatus(200);
   });
@@ -183,31 +161,54 @@ function delProdCategoria(catprod) {
 
 //Agregar categoria nueva a producto
 
-server.post("/:idproducto/:idcategoria", function (req, res) {
-  console.log(req.params)
+server.post("/:producto/:categoria", function (req, res) {
   addProdCategoria(req.params).then((result) => {
     res.send(result);
   });
 });
-function addProdCategoria(producto,categoria) {
+function addProdCategoria(catprod) {
   return ProductCat.create({
-    idproducto: producto,
-    idcategoria: categoria,
+    idproducto: catprod.idproducto,
+    idcategoria: catprod.idnueva,
   });
 }
-server.get("/filtrar", function (req, res) {
-  console.log("llego a la api")
-  Product.findAll({
-    include:[{ 
-         model:Category,
-         where:{
-            id:req.body.id 
-         },
-         attributes:["id","nombrecategoria"],
-         through:{attributes:[]}
-      }],
-     }).then(result => res.json(result))
-});
 
+server.post("/agregar", function (req, res) {
+ let b
+ b=req.body.idcat
+ console.log(b)
+ agregarProd(req.body).then((a)=>{
+ for(let i=0;i<b.length;i++){
+   a.addCategory(b[i])
+ }})
+})
+  //.then((result) => {res.json(console.log(result))});
+ function agregarProd(producto) {
+  return Product.create({
+    nombreproducto: producto.nombreproducto,
+    descripcion:producto.descripcion,
+    valor: producto.valor,
+    stock: producto.stock,
+    
+  })
+}
+
+server.get("/filtrar/:idcategorias", function (req, res) {
+  mPC(req.params.idcategorias).then((result) => {
+    res.send(result);
+  });
+});
+function mPC(idcats) {
+  var array = idcats.split(",")
+  console.log("eso es idcats =>> "+idcats);
+  return Product.findAll({
+    include:{
+      model:Category ,
+    where: {
+      catpro:  array ,
+    },
+  }
+  })
+}
 
 module.exports = server;

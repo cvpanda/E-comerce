@@ -50,6 +50,8 @@ const initialState = {
     ],
 }
 
+
+
 function rootReducer(state = initialState , action){
     
 
@@ -63,7 +65,7 @@ function rootReducer(state = initialState , action){
     if (action.type === "FILTRAR_PRODUCTOS") {
       return{
           ...state,
-          productos: action.payload,
+          productos: action.categorias
       }
     }
     if (action.type === "BUSCAR_PRODUCTOS") {

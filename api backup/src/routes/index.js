@@ -2,21 +2,16 @@ const { Router } = require("express");
 const router = Router();
 const Prod = require("./product.js");
 const Cat = require("./category.js");
-const Carr = require("./carrito.js");
-const Us = require("./users.js");
-const Or = require("./orden.js");
+
+// import all routers;
 const authRouter = require("./auth.js");
 
+// load each router on a route
+// i.e: router.use('/auth', authRouter);
 router.use("/auth", authRouter);
 
 router.use("/productos", Prod);
 
 router.use("/categoria", Cat);
-
-router.use("/usuario", Us);
-
-router.use("/carrito", Carr);
-
-router.use("/orden", Or);
 
 module.exports = router;

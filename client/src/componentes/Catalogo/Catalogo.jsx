@@ -14,7 +14,7 @@ export class Catalogo extends Component {
   // }
     
 componentDidMount(){
-this.props.buscarTodos()
+if(!this.productos){this.props.buscarTodos()}
 this.props.traerCategorias()
 }
 

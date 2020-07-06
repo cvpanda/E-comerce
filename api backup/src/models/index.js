@@ -18,15 +18,9 @@ fs.readdirSync(__dirname)
     models[name] = model;
   });
 
-const { Product, ProductCat, Category, Users, Carrito,Orden} = models;
-
-// Add model relationships here
-Product.belongsToMany(Category, { through: "catpro"})
-Category.belongsToMany(Product, { through: "procat"})
-//Product.hasMany(Category);
-//Category.belongsTo(Product);
-Users.hasOne(Carrito)
-Carrito.belongsTo(Users)
-Carrito.hasMany(Orden)
-Orden.belongsTo(Carrito)
+  const { Product, ProductCat, Category, Users, Carrito,Orden} = models;
+  // Add model relationships here
+  Product.belongsToMany(Category, { through: "catpro" })
+  Category.belongsToMany(Product, { through: "procat" })
+  
 module.exports = models;

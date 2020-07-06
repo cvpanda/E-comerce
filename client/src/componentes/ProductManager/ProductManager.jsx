@@ -14,8 +14,8 @@
         var[ categoria , setCategoria] = useState('')
         var[ stock , setStock] = useState('')
 
-        console.log( "asi esta en el state" + categoria)
-
+        
+      
         function agregaSeleccion(event){
             if(seleccion.length === 0){ 
                 setSeleccion([...seleccion , event.target.value])
@@ -32,13 +32,20 @@
 
         function handleSubmit(event) {
             event.preventDefault();
-            var producto = {nombreproducto:nombre,descripcion,valor,stock, seleccion}
+            alert("producto creado")
+            var producto = {nombreproducto:nombre,descripcion,valor,stock,seleccion }
+            console.log("esto se manda cuando crea producto =>" +seleccion)
             props.crearProducto(producto)
+            setNombre("")
+            setValor("")
+            setDescripcion("")
+            setStock("")
+            
             
         }
 
         function handleCat(event) {
-          console.log("categoria que se envia => "+categoria)
+          
             event.preventDefault();
             props.agregarCategoria(categoria)
       
@@ -111,7 +118,7 @@
                             
                             <Form.Group  >
                             {props.categorias.map(e =>  <Form.Check inline key= {e.id} type="checkbox" 
-                            label = {e.nombrecategoria} name = {e.nombrecategoria} value = {e.nombrecategoria}
+                            label = {e.nombrecategoria} name = {e.nombrecategoria} value = {e.id}
                             onChange= {(event) => agregaSeleccion(event)} />
                             )}
                             <div className = {styles.props}>

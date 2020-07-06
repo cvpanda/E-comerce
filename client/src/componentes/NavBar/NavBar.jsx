@@ -1,7 +1,7 @@
 import React , {useState}from 'react'
-import {connect , useSelector} from 'react-redux'
+import {connect , useSelector , useDispatch} from 'react-redux'
 import { Navbar , Nav , Form , FormControl , Button , Badge} from 'react-bootstrap'
-import { buscarProductos } from '../../redux/actions';
+import { buscarProductos , buscarTodos } from '../../redux/actions';
 import { Link } from 'react-router-dom'
 
 export function NavBar (props){
@@ -11,7 +11,10 @@ export function NavBar (props){
     }
     const comprados = useSelector(store => store.carrito);
   const [producto, setProducto] = useState('')
-
+  const dispatch = useDispatch()
+    var handleClick = () => {
+    dispatch(buscarTodos())
+}
     return(
         <Navbar bg="dark" variant="dark">
             <Link to= '/'>
@@ -19,20 +22,20 @@ export function NavBar (props){
             </Link>
             <Nav className="mr-auto">
                 <Link to= "/productos">
-                <Nav.Link href="#home">Productos</Nav.Link>
+                <Nav.Link onClick = {e => handleClick()} href="#home">Productos</Nav.Link>
                 </Link>
-                <Link to= "/productos/agregar">
+                <Link to= "/agregar">
                 <Nav.Link href="#home">Creador</Nav.Link>
                 </Link>
-                <Link to= "/productos/editor">
+                <Link to= "/editor">
                 <Nav.Link href="#home">Editor</Nav.Link>
                 </Link>  
-                <Link to= '/usuario/registro'>
+                <Link to= '/registro'>
                 <Nav.Link href="#home">Usuario</Nav.Link>
                 </Link>  
             </Nav>
             <Form inline onSubmit = {(e)=> handleSubmit(e)}>
-                <Link to = "/productos/carrito">
+                <Link to = "/carrito">
                     <Button variant="warning">
                     Carrito: <Badge variant="light">{comprados.length}</Badge>
                         <span className="sr-only">productos en carrito</span>

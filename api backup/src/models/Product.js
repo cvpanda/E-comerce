@@ -11,7 +11,7 @@ const Product = (sequelize, S) => {
       allowNull: false,
     },
     descripcion: {
-      type:S.TEXT,
+      type: S.STRING,
       allowNull: false,
     },
     valor: {
@@ -28,10 +28,6 @@ const Product = (sequelize, S) => {
         min: 0,
       },
     },
-  },{
-    timestamps: false,
-    
-
   });
   return Product;
 };

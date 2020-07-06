@@ -18,10 +18,10 @@ function App() {
     <Route path= '/' component={NavBar} />
     <Route exact path= '/productos' component={Catalogo} />
     <Route exact path= '/productos/:id' component={DetalleProd} />
-    <Route exact path= '/productos/agregar' component = {ProductManager} />
-    <Route exact path= '/productos/editor' component = {ProductEditor} />
-    <Route exact path= '/productos/carrito' component = {Carrito} />
-    <Route exact path= '/usuario/registro'  component = {RegistroUsuario}/>
+    <Route exact path= '/agregar' component = {ProductManager} />
+    <Route exact path= '/editor' component = {ProductEditor} />
+    <Route exact path= '/carrito' component = {Carrito} />
+    <Route exact path= '/registro'  component = {RegistroUsuario}/>
     <Route exact path= '/order'  component = {Ordenes}/>
     </React.Fragment>
   );

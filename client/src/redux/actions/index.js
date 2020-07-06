@@ -13,13 +13,20 @@ export function buscarTodos() {
 }
 
 export function filtrarProductos (categorias) {
-    // return function(dispatch){
-    //     axios.get('http://localhost:3001/productos/´ + categoria)
-    //     .then( response => response.data)
-    //     .then(data => {
-    //         dispatch({ type: "FILTRAR_PRODUCTOS", payload: data})
-    //     })
-    // }
+     
+//    return function(dispatch){
+//        axios.get('http://localhost:3001/productos/filtrar',{
+//            body:{
+
+//                 categorias 
+//            }
+//        }).then(response => response.data)
+//        .then(productos => {
+//            dispatch({type: "FILTRAR_PRODUCTOS" , payload: productos})
+//        })
+//    }
+            
+            return{  type: "FILTRAR_PRODUCTOS" , categorias }
    
 }
 
@@ -47,13 +54,14 @@ export function buscarProductoEditar (nombre) {
 }
 
 export function crearProducto (datos){
-    console.log("llego al action")
+    console.log("llego al action con => "+datos.seleccion)
     return function(dispatch){
         axios.post('http://localhost:3001/productos/agregar',{
                 nombreproducto: datos.nombreproducto,
                 descripcion:datos.descripcion,
                 valor:datos.valor,
-                stock:datos.stock
+                stock:datos.stock,
+                idcat: datos.seleccion
         })
         .then(response =>response.data) 
         .then(data => {
@@ -64,21 +72,7 @@ export function crearProducto (datos){
         
       
 }
-export function crearCategoria (payload){
-    console.log("llego al action")
-    return { type: "CREAR_NUEVA_CATEGORIA" , payload};
-    // return function(dispatch){
-    //     axios.post('/categoria/new',{
-    //         params: {
-    //             datos: datos,
-    //         }
-    //     })
-    //     .then(response => response.data)
-    //     .then(data => {
-    //         dispatch({ type: "CREAR_NUEVA_CATEGORIA" , payload: data})
-    //     })
-    // }
-}
+
 
 
 
