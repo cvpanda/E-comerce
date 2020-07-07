@@ -38,6 +38,7 @@ server.post("/agregar", function (req, res) {
     descripcion:producto.descripcion,
     valor: producto.valor,
     stock: producto.stock,
+    imagen: "http://placeimg.com/640/480/tech"
   })
 }
 
@@ -96,7 +97,7 @@ function delProduct(catprod) {
 server.get("/todos", function (req, res,) {
  
   Product.findAll({
-    attributes:["id","nombreproducto","descripcion","stock","valor"],
+    attributes:["id","nombreproducto","descripcion","stock","valor","imagen"],
     include:{ 
       model:Category,
       attributes:["nombrecategoria"],
@@ -208,6 +209,8 @@ server.get("/filtrar", function (req, res) {
       }],
      }).then(result => res.json(result))
 });
+
+
 
 
 module.exports = server;

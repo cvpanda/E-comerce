@@ -11,7 +11,12 @@ server.post("/nuevo",(req,res)=>{
             Carrito.create({
                    userId:user.id
                            })
-}).then(carrito=>res.json(carrito))
+}).then(()=>Users.findOne({
+  where : {
+    nombreusuario: req.body.nombreusuario
+  }
+})).then(result => res.json(result))
+.catch(rej => rej.send("algo salio mal"))
 })
 
 
@@ -59,18 +64,7 @@ function eliminarUsuario(user) {
       }
     }
       server.get("/todos", function (req, res) {
-       Users.findAll({
-           include:{
-               model:Carrito,
-               attributes:['cantidad','total'],
-               include:{
-                model:Orden,
-                attributes:['idproducto','cantidad','total']
-            },
-           },
-           attributes:['nombreusuario','email'],
-           onDelete: 'CASCADE',
-       }).then(users=>res.json(users))
+       Users.findAll().then(users=>res.json(users))
         });
 
 

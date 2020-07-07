@@ -1,7 +1,7 @@
 import React , {useState}from 'react'
 import {connect , useSelector , useDispatch} from 'react-redux'
 import { Navbar , Nav , Form , FormControl , Button , Badge} from 'react-bootstrap'
-import { buscarProductos , buscarTodos } from '../../redux/actions';
+import { buscarProductos , buscarTodos , traerUsuarios } from '../../redux/actions';
 import { Link } from 'react-router-dom'
 
 export function NavBar (props){
@@ -14,6 +14,10 @@ export function NavBar (props){
   const dispatch = useDispatch()
     var handleClick = () => {
     dispatch(buscarTodos())
+}
+
+const testea = () => {
+    dispatch(traerUsuarios())
 }
     return(
         <Navbar bg="dark" variant="dark">
@@ -30,9 +34,10 @@ export function NavBar (props){
                 <Link to= "/editor">
                 <Nav.Link href="#home">Editor</Nav.Link>
                 </Link>  
-                <Link to= '/registro'>
+                <Link to= '/registro' >
                 <Nav.Link href="#home">Usuario</Nav.Link>
                 </Link>  
+                <button onClick = { e => testea()}>este</button>
             </Nav>
             <Form inline onSubmit = {(e)=> handleSubmit(e)}>
                 <Link to = "/carrito">

@@ -22,6 +22,8 @@ export function RegistroUsuario(){
     var usuario = { nombre , apellido , dni , mail , password , nacimiento , ciudad , pais , cp , calle , altura ,extras }
 
    function handleSubmit () {
+       console.log("handle sale con datos" ,usuario)
+       alert("apretaste el boton")
         dispatch(registrarUsuario(usuario))
     }
 

@@ -38,7 +38,7 @@ export function DetalleProd (props) {
                     <Col sm={8}>
                     
                         <h2>{producto().nombreproducto}</h2>
-                        <img src="" alt="" className = {styles.img}/>
+                        <img src={producto().imagen} alt="" className = {styles.img}/>
                     </Col>
                     <Col sm={4} className = {styles.detalles}>
                        <div>

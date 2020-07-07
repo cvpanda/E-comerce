@@ -188,13 +188,27 @@ export function agregarAlCarrito(producto){
 }
 
 export function registrarUsuario(usuario){
+    console.log("llega al action con datos =>" + usuario)
     return function(dispatch){
-        axios.post('http://localhost:3001/usuario/crear',{
-           usuario
+        axios.post('http://localhost:3001/usuario/nuevo',{
+            nombreusuario:usuario.nombre,
+            contraseña:usuario.password,
+            email:usuario.mail  
         })
         .then(response => response.data)
         .then(data => {
             dispatch({ type: "CREAR_USUARIO" , payload: data})
         })
     }
+}
+
+export function traerUsuarios () {
+    console.log("llego al action traer usuarios")
+    return function(dispatch){
+        axios.get('http://localhost:3001/usuario/todos')
+         .then( response => response.data)
+         .then(data => {
+        dispatch({ type: "TRAER_USUARIOS", payload: data})
+        }).catch(console.log(console.error("error")))
+     }
 }

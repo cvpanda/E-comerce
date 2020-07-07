@@ -28,6 +28,11 @@ const Product = (sequelize, S) => {
         min: 0,
       },
     },
+     
+imagen: {
+      type: S.STRING
+    }
+
   },{
     timestamps: false,
     

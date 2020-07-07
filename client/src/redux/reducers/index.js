@@ -1,6 +1,7 @@
 
 const initialState = {
     categorias:[{}],
+    usuario:{},
     seleccionadas:[],
     productos:[ ],
     detalle:{ },
@@ -182,10 +183,19 @@ function rootReducer(state = initialState , action){
         }
     }
     if(action.type ===  "CREAR_USUARIO"){
-        
+        console.log("llega al reducer con " + action.payload)
         return{
             ...state, 
-                
+                usuario: action.payload,
+                productos: action.payload
+        
+        }
+    }
+    if(action.type ===  "TRAER_USUARIOS"){
+        return{
+            ...state, 
+                usuario: action.payload,
+              
         
         }
     }
