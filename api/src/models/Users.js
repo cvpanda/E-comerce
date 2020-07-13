@@ -24,7 +24,7 @@ const Users = (sequelize, S) => {
       direccion:{
         type: S.STRING,
         allowNull: true,
-      },
+      }, 
       cp: {
         type: S.INTEGER,
         allowNull: true,

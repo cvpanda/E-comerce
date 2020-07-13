@@ -51,7 +51,9 @@ const initialState = {
     ],
 }
 
-
+function incrementar(cantidad){
+    return cantidad+1
+}
 
 function rootReducer(state = initialState , action){
     
@@ -137,12 +139,36 @@ function rootReducer(state = initialState , action){
         }
     }
     if(action.type ===  "AGREGAR_AL_CARRITO"){
-        
+        if(state.carrito.length == 0){
+            return{
+                ...state, 
+                    carrito: state.carrito.concat(action.producto)
+        }} else {
+        var newstate =  state.carrito
+        var index
+        var producto = action.producto  
+        function chequear() {
+            for (var i = 0; i < newstate.length; i++) {
+            if(newstate[i].id === producto.id){
+                return true
+            }   
+        }}
+        if(chequear()){
+           for (let i = 0; i < newstate.length; i++) {
+               var valoractual = newstate[i].id
+               if(newstate[i].id == producto.id){
+                    newstate.splice(i,1 ,producto)
+                    return{
+                        ...state,
+                        carrito: newstate
+                    }
+                }
+           }
+        } else {
         return{
             ...state, 
                 carrito: state.carrito.concat(action.producto)
-        
-        }
+        }}}
     }
     if(action.type === "SUBTOTAL_CARRITO"){
         const {ide , total} = action.payload

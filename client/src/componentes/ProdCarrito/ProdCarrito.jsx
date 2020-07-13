@@ -4,9 +4,9 @@ import {Button,Col , Row , InputGroup, ButtonGroup, Badge} from 'react-bootstrap
 import {buscarTodos , eliminarDelCarrito , sendSubtotal} from '../../redux/actions'
 import { useEffect } from 'react'
 
-export function ProdCarrito({nombreproducto , valor ,stock ,  id ,subtotal}){
+export function ProdCarrito({nombreproducto , valor ,stock ,  id ,subtotal , cantidad}){
 
-  const[count , setCount] = useState(1)
+  const[count , setCount] = useState(cantidad )
   
   const dispatch  = useDispatch();
 
@@ -14,7 +14,7 @@ export function ProdCarrito({nombreproducto , valor ,stock ,  id ,subtotal}){
     if(count >= stock ){ alert("el stock de "+nombreproducto+" es de "+stock+" unidades")
   }else{
     setCount(count => count+1)
-    
+   
     
   }
     

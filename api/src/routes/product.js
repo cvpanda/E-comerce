@@ -1,5 +1,5 @@
 const server = require("express").Router();
-const { Product, ProductCat,Category } = require("../models/index.js");
+const { Product, ProductCat,Category, Review } = require("../models/index.js");
 const { Op } = require("sequelize");
 
 
@@ -23,9 +23,13 @@ server.post("/agregar", function (req, res) {
    if(b.length>1){
     for(let i=0;b.length!==i;i++){
        a.addCategory(b[i])
-    }
+    } return a
  }
-})
+}).then((a)=> {
+  Review.create({
+    productId: a.id,
+  })
+}).then(a => res.json(a))
 })
        
 
@@ -97,14 +101,13 @@ function delProduct(catprod) {
 server.get("/todos", function (req, res,) {
  
   Product.findAll({
-    attributes:["id","nombreproducto","descripcion","stock","valor","imagen"],
+    attributes:["id","nombreproducto","descripcion","stock","valor","imagen","cantidad"],
     include:{ 
       model:Category,
       attributes:["nombrecategoria"],
-    }
-  })
-  
-  .then((result) => {
+    },
+   
+  }).then((result) => {
     res.json(result);
   });
 });

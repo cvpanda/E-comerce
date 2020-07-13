@@ -6,6 +6,7 @@ const Carr = require("./carrito.js");
 const Us = require("./users.js");
 const Or = require("./orden.js");
 const authRouter = require("./auth.js");
+const Rev = require("./review.js")
 
 router.use("/auth", authRouter);
 
@@ -18,5 +19,7 @@ router.use("/usuario", Us);
 router.use("/carrito", Carr);
 
 router.use("/orden", Or);
+
+router.use("/review", Rev)
 
 module.exports = router;

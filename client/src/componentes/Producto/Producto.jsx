@@ -8,16 +8,33 @@ import {agregarAlCarrito} from '../../redux/actions'
 // import Categorias from '../Categorias/Categorias'
 
 export function Producto(producto) {
-  const {nombreproducto , descripcion , valor,id,categorias,imagen} = producto
+  const carrito = useSelector(store => store.carrito);
+  const {nombreproducto , descripcion , valor,id,categorias,imagen ,cantidad} = producto
   const dispatch  = useDispatch();
   
+  function chequear(source , target) {
+    for (var i = 0; i < source.length; i++) {
+    if(source[i].id === target.id){
+        return true
+    }}}
 
   function handleClickCarrito(producto){
-    dispatch(agregarAlCarrito(producto))
+    console.log("cantidad de prod "+producto.cantidad)
+    if(carrito.length == 0){
+      dispatch(agregarAlCarrito(producto))
+    }
+    if(chequear(carrito,producto)){
+      var prod = Object.assign({}, producto)
+      prod.cantidad += 1
+      console.log("cantidad de prod aumentado "+producto.cantidad)
+      dispatch(agregarAlCarrito(prod))
+    }else{
+      dispatch(agregarAlCarrito(producto))
+    }
   }
     return ( 
     <div className = {styles.producto}>
-            <Link to= {'/productos/'+ id}>
+            <Link to= {'/productos/'+ id} onClick={e => alert("aca deberia mandar el dispatch para traer reviews")}>
             <h3>{nombreproducto}</h3>
             </Link>
             <Image className = {styles.foto} src={imagen} alt= "FOTO" rounded /> 

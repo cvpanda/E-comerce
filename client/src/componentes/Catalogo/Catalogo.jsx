@@ -36,6 +36,7 @@ this.props.traerCategorias()
                   valor = {producto.valor}
                   id = {producto.id}
                   imagen = {producto.imagen}
+                  cantidad = {producto.cantidad}
                   />
                   )}
               

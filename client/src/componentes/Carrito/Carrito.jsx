@@ -13,23 +13,45 @@ export function Carrito() {
 
     var validos = subtotales.filter(element => element.id)
     var suma = 0
+
     function sumatotal(){
-       
-       
-        console.log("los validos =>"+ validos)
+       console.log("los validos =>"+ validos)
         validos.forEach(element => {
             suma +=element.total
         }); return suma
     }
+    // var cantidad = 1
+    // var filtrados =[]
+    // var prods = () => {
+    //     for (let i = 0; i < productos.length; i++) {
+    //         for (let j = i+1; j < productos.length; j++) {
+    //             if(productos[i] !== null){
+    //             if(productos[i].id !== productos[j].id){
+    //             productos[i].cantidad = 1
+    //             filtrados.push(productos[i])}
+    //              if(productos[i].id == productos[j].id) {
+    //                 productos[i].cantidad = 2
+    //                 productos[j] = null
+    //                 filtrados.push(productos[i])
+    //             }} 
+
+                
+    //         }
+            
+    //     }
+    // }
 
     function handleCompra(validos , suma){
+
         dispatch(confirmarCompra(validos , suma))
     }
+    
     return(
         <Container className={styles.container}>
+            
             <h2>Carrito</h2>
             <h4>Productos:</h4>
-            {productos.map(prod => <ProdCarrito
+            {productos.map(prod =>  <ProdCarrito
             nombreproducto = {prod.nombreproducto}
             valor = {prod.valor}
             cantidad= {prod.cantidad}

@@ -28,6 +28,12 @@ const Product = (sequelize, S) => {
         min: 0,
       },
     },
+    cantidad: {
+      type: S.INTEGER,
+      defaultValue: 1,
+      allowNull:true,
+     
+    },
      
 imagen: {
       type: S.STRING
