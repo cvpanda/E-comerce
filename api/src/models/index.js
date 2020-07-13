@@ -25,10 +25,6 @@ Product.belongsToMany(Category, { through: "catpro"})
 Category.belongsToMany(Product, { through: "procat"})
 //Product.hasMany(Category);
 //Category.belongsTo(Product);
-Users.hasOne(Carrito)
-Carrito.belongsTo(Users)
-Carrito.hasMany(Orden)
-Orden.belongsTo(Carrito)
 //relaciones REVIEW
 Product.hasMany(Review)
 Review.belongsTo(Product)

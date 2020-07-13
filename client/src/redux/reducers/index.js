@@ -1,7 +1,12 @@
 
 const initialState = {
+
     categorias:[{}],
-    usuario:{},
+    usuario:{
+        nombreusuario: "MattCasa",
+        contraseña: "blablalba" ,
+
+    },
     seleccionadas:[],
     productos:[ ],
     detalle:{ },
@@ -223,6 +228,13 @@ function rootReducer(state = initialState , action){
                 usuario: action.payload,
               
         
+        }
+    }
+
+    if(action.type === "LOG_OUT"){
+        return {
+            ...state,
+            usuario: {},
         }
     }
 

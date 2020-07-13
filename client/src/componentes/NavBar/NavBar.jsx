@@ -2,6 +2,7 @@ import React , {useState}from 'react'
 import {connect , useSelector , useDispatch} from 'react-redux'
 import { Navbar , Nav , Form , FormControl , Button , Badge} from 'react-bootstrap'
 import { buscarProductos , buscarTodos , traerUsuarios } from '../../redux/actions';
+import LogIn from '../LogIn/LogIn'
 import { Link } from 'react-router-dom'
 
 export function NavBar (props){
@@ -49,6 +50,7 @@ const testea = () => {
                 <FormControl type="text"placeholder="Buscar" name='producto' value = {producto} onChange={(e)=> setProducto(e.target.value)} className="mr-sm-2" />
                 <Button variant="light" type="submit">Buscar</Button>
             </Form>
+            <LogIn/>
         </Navbar>
     )
 }

@@ -3,7 +3,6 @@ const router = Router();
 const Prod = require("./product.js");
 const Cat = require("./category.js");
 const Carr = require("./carrito.js");
-const Us = require("./users.js");
 const Or = require("./orden.js");
 const authRouter = require("./auth.js");
 const Rev = require("./review.js")
@@ -14,7 +13,6 @@ router.use("/productos", Prod);
 
 router.use("/categoria", Cat);
 
-router.use("/usuario", Us);
 
 router.use("/carrito", Carr);
 

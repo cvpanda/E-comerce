@@ -212,3 +212,7 @@ export function traerUsuarios () {
         }).catch(console.log(console.error("error")))
      }
 }
+
+export function logOut(){
+    return{ type: "LOG_OUT" }
+}
