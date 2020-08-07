@@ -1,34 +1,51 @@
 const server = require("express").Router();
-const { Product, ProductCat } = require("../models/index.js");
+const { Product, ProductCat,Category, Review } = require("../models/index.js");
 const { Op } = require("sequelize");
 
-//Test
-server.get("/test", function (req, res) {
-  res.sendStatus(200);
-});
 
-//Admin
+
+
 
 //Agregar Productos
 
 server.post("/agregar", function (req, res) {
-  console.log(req.body)
-   const {nombreproducto,descripcion,valor,stock}=req.body
+ let b
+ b=req.body.idcat
+ console.log(b)
+ agregarProd(req.body).then((a)=>{
+   console.log(a)
+   if(b.length===0){
+     return res.json(a)
+   }
+   if(b.length===1){
+     return a.addCategory(b)
+   }
+   if(b.length>1){
+    for(let i=0;b.length!==i;i++){
+       a.addCategory(b[i])
+    } return a
+ }
+}).then((a)=> {
+  Review.create({
+    productId: a.id,
+  })
+}).then(a => res.json(a))
+})
+       
 
-  console.log(nombreproducto,descripcion,valor,stock)
-  agregarProd(req.body).then((result) => {
-    const a = Product.findAll()
-    res.send(a);
-  });
-});
-function agregarProd(producto) {
+  
+  //.then((result) => {res.json(console.log(result))});
+ 
+ function agregarProd(producto) {
   return Product.create({
     nombreproducto: producto.nombreproducto,
-    descripcion: producto.descripcion,
+    descripcion:producto.descripcion,
     valor: producto.valor,
     stock: producto.stock,
-  });
+    imagen: "http://placeimg.com/640/480/tech"
+  })
 }
+
 
 //---------------------
 
@@ -83,17 +100,23 @@ function delProduct(catprod) {
 
 server.get("/todos", function (req, res,) {
  
-  Product.findAll().then((result) => {
+  Product.findAll({
+    attributes:["id","nombreproducto","descripcion","stock","valor","imagen","cantidad"],
+    include:{ 
+      model:Category,
+      attributes:["nombrecategoria"],
+    },
+   
+  }).then((result) => {
     res.json(result);
   });
 });
 
-function products() {
-  return Product.findAll();
-}
-
 //---------------------
-
+server.get("/filter/:id", function (req, res) {
+ Product.findByPk().then(result=>res.json(result))
+ 
+});
 //Muestra un producto por id
 
 server.get("/:id", function (req, res) {
@@ -142,7 +165,7 @@ function searchProduct(key) {
 
 //Quitar categoria a un producto
 
-server.delete("/:idproducto/:idcategoria", function (req, res) {
+server.delete("/delete", function (req, res) {
   delProdCategoria(req.params).then(() => {
     res.sendStatus(200);
   });
@@ -164,16 +187,33 @@ function delProdCategoria(catprod) {
 
 //Agregar categoria nueva a producto
 
-server.post("/:producto/:categoria", function (req, res) {
+server.post("/:idproducto/:idcategoria", function (req, res) {
+  console.log(req.params)
   addProdCategoria(req.params).then((result) => {
     res.send(result);
   });
 });
-function addProdCategoria(catprod) {
+function addProdCategoria(producto,categoria) {
   return ProductCat.create({
-    idproducto: catprod.idproducto,
-    idcategoria: catprod.idnueva,
+    idproducto: producto,
+    idcategoria: categoria,
   });
 }
+server.get("/filtrar", function (req, res) {
+  console.log("llego a la api")
+  Product.findAll({
+    include:[{ 
+         model:Category,
+         where:{
+            id:req.body.id 
+         },
+         attributes:["id","nombrecategoria"],
+         through:{attributes:[]}
+      }],
+     }).then(result => res.json(result))
+});
+
+
+
 
 module.exports = server;

@@ -19,7 +19,8 @@ const ProductCat = (sequelize, S) => {
       type: S.INTEGER,
       allowNull: false,
     },
-  });
+  } ,{timestamp : false}
+  );
 
   return PC;
 };

@@ -14,7 +14,7 @@ export class Catalogo extends Component {
   // }
     
 componentDidMount(){
-this.props.buscarTodos()
+if(!this.productos){this.props.buscarTodos()}
 this.props.traerCategorias()
 }
 
@@ -30,11 +30,13 @@ this.props.traerCategorias()
             </Col>
             <Col sm={8} className = {styles.productos}>
                 {this.props.productos.map((producto) => <Producto 
-                  nombre = {producto.nombreproducto} 
+                  key = {producto.id}
+                  nombreproducto = {producto.nombreproducto} 
                   descripcion = {producto.descripcion}
                   valor = {producto.valor}
                   id = {producto.id}
                   imagen = {producto.imagen}
+                  cantidad = {producto.cantidad}
                   />
                   )}
               

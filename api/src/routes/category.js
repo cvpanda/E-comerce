@@ -15,7 +15,7 @@ server.get("/todos", function (req, res,) {
 
 server.post("/agregar", function (req, res) {
   console.log(req.body)
-  agregarCat(req.body).then(Category.findAll().then((result)=>{
+  agregarCat(req.body).then(((result)=>{
      res.json(result) 
   }));
   

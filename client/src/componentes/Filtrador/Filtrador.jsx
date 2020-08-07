@@ -1,15 +1,32 @@
 import React ,{useState} from 'react'
-import {connect} from 'react-redux'
+import {connect , useSelector , useDispatch} from 'react-redux'
 import { FormCheck, Form} from 'react-bootstrap'
-import { filtrarProductos } from '../../redux/actions';
+import { filtrarProductos , buscarTodos} from '../../redux/actions';
 
 export function Filtrador ({categorias , filtrarProductos}) {
     var [seleccion , setSeleccion] = useState('')
-    // function handleSubmit(event) {
-    //     event.preventDefault();
-    //     filtrarProductos(seleccion)
-    // }
-    // (event) => setSeleccion([...seleccion , event.target.value])
+   var productos = useSelector(store => store.productos)
+   const dispatch = useDispatch()
+
+    function handleSubmit(event) {
+      
+        event.preventDefault();
+        filtrarProductos(filter(seleccion))
+        console.log("handle submit dispara accion con " + seleccion)
+    }
+    function filter ( cats){
+       var newState = []
+      productos.forEach(producto => 
+
+             producto.categories.forEach( (categoria) =>
+              {  if(categoria.catpro.categoryId == cats){
+                  newState.push(producto)
+              } })) 
+             
+             return newState
+     }
+
+
     function agregaSeleccion(event){
         if(!seleccion){ 
             setSeleccion([...seleccion , event.target.value])
@@ -24,16 +41,16 @@ export function Filtrador ({categorias , filtrarProductos}) {
     return(
         <div>
            
-           {console.log(seleccion)}
-            <Form onSubmit = {(e)=> this.handleSubmit(e)}>
+            <Form onSubmit = {(e)=> handleSubmit(e)}>
                 <h4>Categorias</h4>
                 {categorias.map(categoria =>
-                <FormCheck type= "checkbox" label = {categoria.nombrecategoria} name = {categoria.nombrecategoria}
-                value = {categoria.nombrecategoria} onChange= {(event) => agregaSeleccion(event)} />
+                <FormCheck type= "checkbox" label = {categoria.nombrecategoria} key={categoria.id} name = {categoria.nombrecategoria}
+                value = {parseInt(categoria.id)} onChange= {(event) => agregaSeleccion(event)} />
                 )}
                 <input type="submit" value="Submit" />  
                 
             </Form>
+     
         </div>
  
 

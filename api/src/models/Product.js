@@ -11,7 +11,7 @@ const Product = (sequelize, S) => {
       allowNull: false,
     },
     descripcion: {
-      type: S.STRING,
+      type:S.TEXT,
       allowNull: false,
     },
     valor: {
@@ -28,6 +28,21 @@ const Product = (sequelize, S) => {
         min: 0,
       },
     },
+    cantidad: {
+      type: S.INTEGER,
+      defaultValue: 1,
+      allowNull:true,
+     
+    },
+     
+imagen: {
+      type: S.STRING
+    }
+
+  },{
+    timestamps: false,
+    
+
   });
   return Product;
 };
